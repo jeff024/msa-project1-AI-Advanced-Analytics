@@ -17,12 +17,9 @@ This project used the Dataset downloaded from "https://archive.ics.uci.edu/ml/da
 
 ### How To Run
 - Please make sure all the required dependencies are installed on your machine before running
-- Just simply type '''python3 SpamEmail.py''' and you can get this model up and running !
+- Just simply type `python3 SpamEmail.py` and you can get this model up and running !
 
 ### Result
 <img src = "https://github.com/jeff024/msa-project1-AI-Advanced-Analytics/blob/master/image/accuracy.jpg" width = "500">
 
-'''
-fewwe
-'''
 
