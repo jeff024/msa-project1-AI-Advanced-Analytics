@@ -21,5 +21,4 @@ This project used the Dataset downloaded from "https://archive.ics.uci.edu/ml/da
 
 ### Result
 <img src = "https://github.com/jeff024/msa-project1-AI-Advanced-Analytics/blob/master/image/accuracy.jpg" width = "500">
-
-
+It is clear from the comparison that SVM model using linear kernel and Neural network both work pretty well. Since Neural network gets the highest accuracy, I would choose this model as my final choice.
