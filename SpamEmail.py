@@ -30,6 +30,25 @@ test_Y = test_Y.reset_index(drop = True)
 
 # After resetting index, the training and testing set are ready to use for SVM and Naive-Bayes models
 
+
+# Before training Neural network, I need to further preprocess dataset (normalization)
+# Normalization: I need to rescale these three attributes "capital_run_length_average", "capital_run_length_longest",
+# "capital_run_length_total" to be ranged from [1, ...] to [0, 100] (same formate as other attributes)
+def NormalizeData(data):
+    return (data - np.min(data)) / (np.max(data) - np.min(data))
+for i in [54, 55, 56]:
+    train_X[i] = 100 * NormalizeData(train_X[i])
+    test_X[i] = 100 * NormalizeData(test_X[i])
+
+# Checking the data is now what I expected.
+
+print(train_X.head())
+print(train_X.describe())
+
+print(test_X.head())
+print(test_X.describe())
+
+
 # Training and testing SVM model using three different kernel
 from sklearn import svm
 
@@ -73,37 +92,12 @@ result['Model'].append("gaussian")
 result["Accuracy"].append(gaussian_nb_acc)
 
 
-# Before training Neural network, I need to further preprocess dataset (including normalization and categorization)
-# Normalization: I need to rescale these three attributes "capital_run_length_average", "capital_run_length_longest",
-# "capital_run_length_total" to be ranged from [1, ...] to [0, 100] (same formate as other attributes)
-
-def NormalizeData(data):
-    return (data - np.min(data)) / (np.max(data) - np.min(data))
-for i in [54, 55, 56]:
-    train_X[i] = 100 * NormalizeData(train_X[i])
-    test_X[i] = 100 * NormalizeData(test_X[i])
-
-
 # Categorization: Since I will be using "categorical_crossentropy" loss function in later neural network, I need train_Y and test_Y to be binary matrix representation of the {0, 1}
 
 from keras.utils import to_categorical
 # reformatting outputs to categorical values
 train_Y = to_categorical(train_Y)
 test_Y = to_categorical(test_Y)
-
-# Checking the data is now what I expected.
-
-print(train_X.head())
-print(train_X.describe())
-
-print(train_Y.head())
-print(train_Y.describe())
-
-print(test_X.head())
-print(test_X.describe())
-
-print(test_Y.head())
-print(test_Y.describe())
 
 
 # Constructing layers. This neural network includes 1 input layer(57 Neurons), 2 hidden layers(each with 16 neurons) and 1 output layer(2 neurons).
@@ -135,18 +129,6 @@ print('Training finished')
 print('Training Evaluation: loss = %0.3f, accuracy = %0.2f%%'
       %(training_stats.history['loss'][-1], 100 * training_stats.history['accuracy'][-1]))
 
-# plotting accuracy and training loss on graph
-import matplotlib.pyplot as graph
-accuracy, = graph.plot(training_stats.history['accuracy'],label = 'Accuracy')
-training_loss = graph.plot(training_stats.history['loss'],label = 'Training Loss')
-
-
-graph.legend(handles = [accuracy,training_loss])
-loss = np.array(training_stats.history['loss'])
-xp = np.linspace(0, loss.shape[0], 10 * loss.shape[0])
-graph.plot(xp, np.full(xp.shape, 1), c = 'k', linestyle = ':', alpha = 0.5)
-graph.plot(xp, np.full(xp.shape, 0), c = 'k', linestyle = ':', alpha = 0.5)
-graph.savefig("image/neural_network_loss&acc.jpg")
 
 # starting evaluation
 evaluation = model.evaluate(test_X, test_Y, verbose=0)
