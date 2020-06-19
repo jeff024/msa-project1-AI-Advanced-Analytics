@@ -1,5 +1,12 @@
 # Email Spam Classifier
- 
+
+## Table of contents
+* [Abstract](#abstarct)
+* [Dependencies](#Dependencies)
+* [DataSet](#DataSet)
+* [HOW TO RUN](#HOWTORUN)
+* [Result](#result)
+
 ### Abstract
 The main focus of this project revolves around the constant issue of modern spam emails and the countermeasure study of spam mail identification. In this project, I built a spam detector using 6 Machine Learning models and evaluate them with test data. The dataset is downloaded from UCI repository. As per my analysis, SVM model using linear kernel and Neural network worked well for spam classification, whereas others performed not as good.
 
