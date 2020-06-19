@@ -22,7 +22,7 @@ The main focus of this project revolves around the constant issue of modern spam
 
 #### How to set up
 - Install Python 3.6: https://www.python.org/downloads/release/python-360/
-- All other dependencies can be downloaded by `pip3 something`
+- All other dependencies can be downloaded by `pip3 install something`
 
 ### DataSet
 This project used the Dataset downloaded from "https://archive.ics.uci.edu/ml/datasets/Spambase" which refers to sample Project 3 in MSA project AI & Advanced Analysis (A ML model to identify emails are spam or not)
@@ -44,7 +44,7 @@ This project used the Dataset downloaded from "https://archive.ics.uci.edu/ml/da
 5. Preprocess the data again for the usage of Nerual Network
 6. Constructing Nerual Network and fitting the model
 7. Evaluate this model against test set
-8. Put all the test result in a bar graph for comparision performance
+8. Put all the test result in a bar chart for comparising performance
 
 
 ### Result
